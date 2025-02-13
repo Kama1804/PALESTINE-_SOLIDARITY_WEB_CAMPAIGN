@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    section {
+      padding: 40px 20px;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    /* Task 1: Animated Message */
+    .message-container {
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+    }
+    
+    .solidarity-message {
+      font-size: 4rem;
+      font-weight: bold;
+      animation: fadeAndColor 8s infinite;
+    }
+    
+    @keyframes fadeAndColor {
+      0% {
+        opacity: 0;
+        color: #ffffff;
+      }
+      25% {
+        opacity: 1;
+        color: #ee2b2b;
+      }
+      50% {
+        opacity: 1;
+        color: #4CAF50;
+      }
+      75% {
+        opacity: 1;
+        color: #000000;
+      }
+      100% {
+        opacity: 0;
+        color: #ffffff;
+      }
+    }
+
+    /* Task 2: Timeline */
+    .timeline {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding: 20px;
+      margin: 40px 0;
+      border-left: 4px solid #4CAF50;
+      background: #f9f9f9;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-item:hover {
+      transform: translateX(10px);
+      background: #f0f0f0;
+    }
+    
+    .timeline-content {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .timeline-media {
+      flex: 1;
+      max-width: 300px;
+    }
+    
+    .timeline-media img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    
+    .timeline-text {
+      flex: 2;
+    }
+    
+    .timeline-date {
+      font-weight: bold;
+      color: #4CAF50;
+    }
+
+    .map-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .map-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .map-button {
+      padding: 8px 16px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .map-button:disabled {
+      background: #cccccc;
+    }
+
+    .region {
+      fill: #e0e0e0;
+      stroke: #000;
+      stroke-width: 1;
+      transition: fill 0.3s ease;
+    }
+
+    .region:hover {
+      fill: #4CAF50;
+      cursor: pointer;
+    }
+
+    .city-point {
+      fill: #ee2b2b;
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    .city-point.visible {
+      opacity: 1;
+    }
+
+    .city-label {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      fill: #333;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .city-label.visible {
+      opacity: 1;
+    }
+
+    .info-box {
+      position: absolute;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: none;
+      max-width: 200px;
+      z-index: 1000;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .solidarity-message {
+        font-size: 2rem;
+      }
+      
+      .timeline-content {
+        flex-direction: column;
+      }
+      
+      .timeline-media {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Task 1: Animated Message -->
+  <section id="animated-message">
+    <div class="message-container">
+      <div class="solidarity-message">Free Palestine</div>
+    </div>
+  </section>
+
+  <!-- Task 2: Interactive Timeline -->
+  <section id="timeline">
+    <h2>Historical Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-media">
+            <img src="1948.jpg" alt="1948 Nakba">
+          </div>
+          <div class="timeline-text">
+            <div class="timeline-date">1948</div>
+                <h3>Al-Nakba (The Catastrophe)</h3>
+                <p>Over 750,000 Palestinians were forcibly displaced following the creation of Israel, leading to mass exile and loss of Palestinian land.</p>
+            </div>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-media">
+            <img src="1967.jpg" alt="1967 Six-Day War">
+          </div>
+          <div class="timeline-text">
+            <div class="timeline-date">1967</div>
+            <h3>Six-Day War & Occupation</h3>
+            <p>Israel occupied the West Bank, Gaza, and East Jerusalem, leading to military rule over Palestinians and the beginning of illegal settlements.</p>
+        </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+            <div class="timeline-media">
+                <img src="1987.jpg" alt="1987 Intifada">
+            </div>
+            <div class="timeline-text">
+                <div class="timeline-date">1987</div>
+                <h3>First Intifada</h3>
+                <p>A large-scale Palestinian uprising against Israeli occupation, marked by civil disobedience and clashes, leading to global awareness of the Palestinian struggle.</p>
+            </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-media">
+            <img src="2008.jpg" alt="2008 Gaza War">
+            </div>
+          <div class="timeline-text">
+            <div class="timeline-date">2008</div>
+                <h3>Gaza War</h3>
+                <p>Israel launched a major military operation in Gaza, causing extensive casualties and destruction, worsening the humanitarian crisis.</p>
+            </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-content">
+            <div class="timeline-media">
+                <img src="2012.jpg" alt="2012 Palestine UN Recognition">
+            </div>
+            <div class="timeline-text">
+                <div class="timeline-date">2012</div>
+                <h3>Palestine Recognized by the UN</h3>
+                <p>The United Nations upgraded Palestine to a "non-member observer state" status, recognizing its sovereignty on the international stage.</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Task 3: Interactive SVG Map -->
+  <div class="map-container">
+    <div class="map-controls">
+      <button id="startAnimation" class="map-button">Animate Cities</button>
+      <button id="resetAnimation" class="map-button" disabled>Reset</button>
+      <button id="highlightWestBank" class="map-button">West Bank</button>
+      <button id="highlightGaza" class="map-button">Gaza Strip</button>
+    </div>
+    <div id="infoBox" class="info-box"></div>
+    <svg viewBox="0 0 300 500" width="100%" height="500">
+      <!-- West Bank Region -->
+      <path class="region" id="westBank"
+            d="M120,50 L220,50 L240,150 L210,250 L170,300 L130,250 L110,150 Z"
+            data-name="West Bank"
+            data-info="The West Bank is a landlocked territory near the Mediterranean coast of Western Asia, bordered by Jordan and Israel"/>
+      
+      <!-- Gaza Strip Region -->
+      <path class="region" id="gaza"
+            d="M70,350 L100,350 L110,400 L90,450 L60,450 L50,400 Z"
+            data-name="Gaza Strip"
+            data-info="Gaza Strip is a Palestinian enclave on the eastern coast of the Mediterranean Sea"/>
+      
+      <!-- Major Cities -->
+      <g id="cities">
+        <circle class="city-point" cx="170" cy="100" r="4" data-info="Jerusalem - Historical and religious significance"/>
+        <text class="city-label" x="180" y="100">Jerusalem</text>
+        
+        <circle class="city-point" cx="150" cy="150" r="4" data-info="Ramallah - De facto administrative capital"/>
+        <text class="city-label" x="160" y="150">Ramallah</text>
+        
+        <circle class="city-point" cx="80" cy="400" r="4" data-info="Gaza City - Largest city in the Gaza Strip"/>
+        <text class="city-label" x="90" y="400">Gaza City</text>
+        
+        <circle class="city-point" cx="160" cy="200" r="4" data-info="Bethlehem - Birthplace of Jesus and important cultural site"/>
+        <text class="city-label" x="170" y="200">Bethlehem</text>
+        
+        <circle class="city-point" cx="140" cy="130" r="4" data-info="Nablus - Major cultural and economic center"/>
+        <text class="city-label" x="150" y="130">Nablus</text>
+      </g>
+    </svg>
+  </div>
+
+
+  <script>
+    const startButton = document.getElementById('startAnimation');
+    const resetButton = document.getElementById('resetAnimation');
+    const westBankButton = document.getElementById('highlightWestBank');
+    const gazaButton = document.getElementById('highlightGaza');
+    const infoBox = document.getElementById('infoBox');
+
+    function animateCities() {
+      const cities = document.querySelectorAll('.city-point, .city-label');
+      cities.forEach((city, index) => {
+        setTimeout(() => {
+          city.classList.add('visible');
+        }, index * 500);
+      });
+      startButton.disabled = true;
+      resetButton.disabled = false;
+    }
+
+    function resetCities() {
+      const cities = document.querySelectorAll('.city-point, .city-label');
+      cities.forEach(city => {
+        city.classList.remove('visible');
+      });
+      startButton.disabled = false;
+      resetButton.disabled = true;
+    }
+
+    function highlightRegion(regionId) {
+      const regions = document.querySelectorAll('.region');
+      regions.forEach(region => {
+        region.style.fill = '#e0e0e0';
+      });
+      document.getElementById(regionId).style.fill = '#4CAF50';
+    }
+
+    function showInfo(e, info) {
+      infoBox.style.display = 'block';
+      infoBox.style.left = `${e.pageX + 10}px`;
+      infoBox.style.top = `${e.pageY + 10}px`;
+      infoBox.textContent = info;
+    }
+
+    function hideInfo() {
+      infoBox.style.display = 'none';
+    }
+
+    startButton.addEventListener('click', animateCities);
+    resetButton.addEventListener('click', resetCities);
+    westBankButton.addEventListener('click', () => highlightRegion('westBank'));
+    gazaButton.addEventListener('click', () => highlightRegion('gaza'));
+
+    document.querySelectorAll('.city-point, .region').forEach(element => {
+      element.addEventListener('mouseenter', (e) => {
+        showInfo(e, element.dataset.info);
+      });
+      element.addEventListener('mouseleave', hideInfo);
+    });
+
+    document.addEventListener('DOMContentLoaded', resetCities);
+  </script>
+</body>
+</html>
